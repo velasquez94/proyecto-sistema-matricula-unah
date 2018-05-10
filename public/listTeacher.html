@@ -116,14 +116,14 @@
 		<!-- Content page -->
 		<div class="container">
             <div class="page-header">
-              <h1 class="all-tittles">Sistema de matrícula <small>   Administración de estudiantes</small></h1>
+              <h1 class="all-tittles">Sistema de matrícula <small>   Administración de docentes</small></h1>
             </div>
         </div>
         <div class="conteiner-fluid">
             <ul class="nav nav-tabs nav-justified"  style="font-size: 17px;">
                 <li role="presentation"><a href="admin.html">Administradores</a></li>
-                <li role="presentation"><a href="teacher.html">Docentes</a></li>
-                <li role="presentation" class="active"><a href="student.html">Estudiantes</a></li>
+                <li role="presentation"  class="active"><a href="teacher.html">Docentes</a></li>
+                <li role="presentation"><a href="student.html">Estudiantes</a></li>
                 <li role="presentation"><a href="personal.html">Personal administrativo</a></li>
             </ul>
         </div>
@@ -133,7 +133,7 @@
                     <img src="assets/img/user.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
-                    En esta sección se podrá registrar a los usuarios con atributos de estudiantes
+                    En esta sección se puede ver la lista de docentes registrdos
                 </div>
             </div>
 		</div>
@@ -141,8 +141,8 @@
             <div class="row">
                 <div class="col-xs-12 lead">
                     <ol class="breadcrumb">
-                      <li><a href="student.html">Nuevo estudiante</a></li>
-                      <li class="active">Listado de estudiantes</li>
+                      <li><a href="teacher.html">Nuevo docente</a></li>
+                      <li class="active">Listado de docentes</li>
                     </ol>
                 </div>
             </div>
@@ -150,7 +150,7 @@
 		<div class="container-fluid" style="margin: 0 0 50px 0;">
                 <form class="pull-right" style="width: 30% !important;" autocomplete="off">
                     <div class="group-material">
-                        <input type="search" style="display: inline-block !important; width: 70%;" class="material-control tooltips-general" placeholder="Buscar estudiante" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}" maxlength="50" data-toggle="tooltip" data-placement="top" title="Escribe los nombres, sin los apellidos">
+                        <input type="search" style="display: inline-block !important; width: 70%;" class="material-control tooltips-general" placeholder="Buscar docente" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}" maxlength="50" data-toggle="tooltip" data-placement="top" title="Escribe los nombres, sin los apellidos">
                         <button class="btn" style="margin: 0; height: 43px; background-color: transparent !important;">
                             <i class="zmdi zmdi-search" style="font-size: 25px;"></i>
                         </button>
@@ -165,11 +165,11 @@
                 </ul>
             </div>
             <div class="container-fluid">
-                <h2 class="text-center all-tittles">Listado de estudiantes</h2>
+                <h2 class="text-center all-tittles">Listado de docentes</h2>
                 <div class="table-responsive">
                     <div class="div-table" style="margin:0 !important;">
                         <div class="div-table-row div-table-row-list" style="background-color:#DFF0D8; font-weight:bold;">
-                            <div class="div-table-cell" style="width: 6%;">#Cuenta</div>
+                            <div class="div-table-cell" style="width: 6%;">#Empleado</div>
                             <div class="div-table-cell" style="width: 9%;">#Identidad</div>
                             <div class="div-table-cell" style="width: 12%;">Nombres</div>
                             <div class="div-table-cell" style="width: 12%;">Apellidos</div>
@@ -178,7 +178,7 @@
                             <div class="div-table-cell" style="width: 11%;">Fecha nacimiento</div>
                             <div class="div-table-cell" style="width: 9%;">campus</div>
                             <div class="div-table-cell" style="width: 9%;">Sección</div>
-                            <div class="div-table-cell" style="width: 6%;">Actualizar</div>
+                            <div class="div-table-cell" style="width: 6%;">Título</div>
                             <div class="div-table-cell" style="width: 6%;">Eliminar</div>
                         </div>
                     </div>
@@ -194,10 +194,8 @@
                             <div class="div-table-cell" style="width: 9%;">Telefono</div>
                             <div class="div-table-cell" style="width: 11%;">Fecha nacimiento</div>
                             <div class="div-table-cell" style="width: 9%;">campus</div>
-                            <div class="div-table-cell" style="width: 9%;">Sección</div>
-                            <div class="div-table-cell" style="width: 6%;">
-                                <button class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></button>
-                            </div>
+							<div class="div-table-cell" style="width: 9%;">Sección</div>
+							<div class="div-table-cell" style="width: 6%;">Título</div>
                             <div class="div-table-cell" style="width: 6%;">
                                 <button class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></button>
                             </div>

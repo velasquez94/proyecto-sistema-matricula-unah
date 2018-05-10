@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario Login</title>
+ 
+    <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"> <!--Iconos--> 
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500" >
+    <link rel="stylesheet" href="css/custom.css">
+    <link href="img/unah10.png" rel="icon">
+  </head>
+
+  <body>      
+    <div class="my-content" >
+        <div class="container" > 
+            <div class="row">
+                <div class="col-sm-12" >
+                  <h1>Formulario de Registro</h1>
+                  <div class="mydescription">
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3 myform-cont" >
+                    <div class="myform-top">
+                        <div class="myform-top-left">
+                            <p>Ingresa tus datos personales:</p>
+                        </div>
+                        <div class="myform-top-right">
+                        <i class="fas fa-address-card"></i>
+                          <!--<i class="fa fa-user"></i>-->
+                        </div>
+                    </div>
+                    <!---->
+                    <div class="myform-bottom">
+                      <form role="form" action="" method="post" class="">
+                        <div class="form-group">
+                            <input type="text" name="txt-nombre" placeholder="Nombres..."  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,30}" maxlength="30"  required="required" class="form-control" id="form-firtsname" title="solamente letras">
+                            <!--<div class="valid-feedback">Esta bien</div>
+                            <div class="invalid-feedback">Ingrese el nombre</div>-->
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="form-lastname" placeholder="Apellidos..." class="form-control" id="form-lastname" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{5,30}" maxlength="30"  required="required" data-toggle="tooltip" data-placement="top" title="solamente letras">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="txt-identidad" placeholder="Número de Identidad (ejm:0801199007462)" pattern="^[1|0]\d{12,12}$" required="required" maxlength="13" class="form-control" id="form-identidad" title="solamente números">
+                        </div>    
+                         <div class="form-group">
+                            <input type="text" name="txt-telefono" placeholder="Número de teléfono" pattern="^[9|8|2]\d{7,7}$" required="required" maxlength="8" class="form-control" id="form-telefono" title="solamente números">
+                        </div>
+                        <div class="form-group">
+                          <textarea type="text-area" name="form-direccion" placeholder="Dirección..." pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{8,60}" maxlength="60" required="required" class="form-control" id="form-direccion" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="form-email" placeholder="Correo electrónico..." class="form-control" id="form-email"  data-rule="email" required="required" data-msg="Ingresar correo electronico valido" title="correo electronico incorrecto">
+                          </div>
+                        <div class="form-group">
+                         <label class="form-group" >Fecha de nacimiento</label>
+                          <input class="form-control" required="required" type="date">
+                        </div>
+                       <div>
+                          <label class="form-group">Genero</label>
+                        </div>
+                        <div class="form-group col-sm-6 col-xl-6 " >
+                          <input type="radio" name="rbt-genero" id="rbt-femenino" required="required"><label for="rbt-femenino">Femenino</label>
+                        </div>
+                        <div class="form-group col-sm-6 col-xl-6">
+                          <input type="radio" name="rbt-genero" id="rbt-masculino" ><label for="rbt-masculino">Masculino</label>
+                        </div>
+                        <div>
+                          <label class="form-group">Estado civil</label>
+                        </div>
+                        <div class="form-group col-sm-6 col-xl-6 ">
+                          <input type="radio" name="rbt-estado" id="rbt-soltero"required="required"><label for="rbt-soltero">Soltero</label>
+                        </div>
+                        <div class="form-group col-sm-6 col-xl-6">
+                          <input type="radio" name="rbt-estado" id="rbt-casado"><label for="rbt-casado">Casado</label>
+                        </div>
+                        <button type="submit" class="mybtn" onclick="validar();">Registrar</button>
+                        </div>
+                      </form>
+                    </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/controlador.js"></script>
+  </body>
+</html>

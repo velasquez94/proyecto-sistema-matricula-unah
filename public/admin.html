@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Admin</title>
+	<title>Sistema de matrícula</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="./css/main.css">
+	<link href="img/unah10.png" rel="icon">
 </head>
 <body>
 	<!-- SideBar -->
@@ -22,14 +23,10 @@
 					<figcaption class="text-center text-titles">Sistema de Matrícula</figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
-					<li>
-						<a href="#!">
-							<i class="zmdi zmdi-settings"></i>
-						</a>
-					</li>
+					
 					<li>
 						<a href="#!" class="btn-exit-system">
-							<i class="zmdi zmdi-power"></i>
+							<i class="zmdi zmdi-power"></i> Cerrar sesión
 						</a>
 					</li>
 				</ul>
@@ -47,16 +44,13 @@
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-							<a href=""><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Periodo</a>
-						</li>
-						<!--<li>
-							<a href="subject.html"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Subject</a>
-						</li>-->
-						<li>
-							<a href=""><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i> Sección</a>
+							<a href="career.html"><i class="zmdi zmdi-balance zmdi-hc-fw"></i> Carreras</a>
 						</li>
 						<li>
-							<a href=""><i class="zmdi zmdi-font zmdi-hc-fw"></i> Aula</a>
+							<a href="section.html"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Sección</a>
+						</li>
+						<li>
+							<a href="aula.html"><i class="zmdi zmdi-font zmdi-hc-fw"></i> Aula</a>
 						</li>
 					</ul>
 				</li>
@@ -148,7 +142,7 @@
                 <div class="col-xs-12 lead">
                     <ol class="breadcrumb">
                       <li class="active">Nuevo administrador</li>
-                      <li><a href="listdocent.html">Listado de administradores</a></li>
+                      <li><a href="listAdmin.html">Listado de administradores</a></li>
                     </ol>
                 </div>
             </div>
@@ -161,50 +155,92 @@
                        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                            <legend>Datos del administrador</legend>
                            <br><br>
-                            <div class="group-material">
-                                <input type="text" class="material-control tooltips-general" placeholder="Código de persona" required="" maxlength="20" data-toggle="tooltip" data-placement="top" title="NIE de administrador">
+						   <div class="group-material">
+                                <input type="text" class="material-control tooltips-general" placeholder="Código de persona" pattern="[0-9]{1,10}" required="required" maxlength="10" data-toggle="tooltip" data-placement="top" title="codigo de persona">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>ID</label>
-                            </div>
+							</div>
+						
                             <div class="group-material">
-                                <input type="text" class="material-control tooltips-general" placeholder="Nombres del administrador" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50" data-toggle="tooltip" data-placement="top" title="Nombres del administrador">
+                                <input type="text" class="material-control tooltips-general" placeholder="Nombres del administrador" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,50}" maxlength="50" data-toggle="tooltip" data-placement="top" title="Nombres del administrador">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Nombres</label>
                             </div>
                             <div class="group-material">
-                                <input type="text" class="material-control tooltips-general" placeholder="Apellidos del administrador" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50" data-toggle="tooltip" data-placement="top" title="Apellidos del docente">
+                                <input type="text" class="material-control tooltips-general" placeholder="Apellidos del administrador" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{5,50}" maxlength="50" data-toggle="tooltip" data-placement="top" title="Apellidos del administrador">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Apellidos</label>
                             </div>
                            
                             <div class="group-material">
-                                <input type="text" class="material-control tooltips-general" placeholder="Número de identidad" required="" pattern="[a-zA-ZéíóúáñÑ ]{1,30}" maxlength="30" data-toggle="tooltip" data-placement="top" title="Parentesco">
+                                <input type="text" class="material-control tooltips-general" placeholder="Número de identidad" pattern="^[1|0]\d{12,12}$" required="required" maxlength="13" data-toggle="tooltip" data-placement="top" title="Solamente 13 números">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
-                                <label>Número de Identidad</label>
+                                <label>Número de identidad</label>
                             </div>
-                            
                             <div class="group-material">
-                                <input type="text" class="material-control tooltips-general" placeholder="Correo electrónico" required="" pattern="[a-zA-ZéíóúáñÑ ]{1,50}" maxlength="50" data-toggle="tooltip" data-placement="top">
+                                <input type="email" class="material-control tooltips-general" placeholder="Correo electrónico" required=""  data-toggle="tooltip" data-rule="email" data-placement="top" id="email" data-msg="Ingresar correo electronico valido" title="correo electronico">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Correo electrónico</label>
                             </div>
                             <div class="group-material">
-                                <input type="text" class="material-control tooltips-general" placeholder="Teléfono" pattern="[0-9]{8,8}" required="" maxlength="8" data-toggle="tooltip" data-placement="top" title="Solamente 8 números">
+                                <input type="tel" class="material-control tooltips-general" placeholder="Teléfono" pattern="^[9|8|3|2]\d{7,7}$" required="" maxlength="8" data-toggle="tooltip" data-placement="top" title="Solamente 8 números">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Teléfono</label>
 							</div>
 							<div class="group-material">
-                                <input type="text" class="material-control tooltips-general check-representative" placeholder="Dirección donde vive" pattern="[0-9-]{1,10}" required="" maxlength="10" data-toggle="tooltip" data-placement="top" title="Solamente números y guiones, 10 dígitos">
+                                <input type="text" class="material-control tooltips-general check-representative" placeholder="Dirección donde vive" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{6,200}" maxlength="200" required="" data-toggle="tooltip" data-placement="top" >
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Dirección</label>
-                            </div>
+							</div>
+							<div class="group-material">
+                                <input type="date" class="material-control tooltips-general check-representative" placeholder="Fecha de nacimiento" pattern="[0-9]{10,10}" required="required" maxlength="10" data-toggle="tooltip" data-placement="top" >
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Fecha de nacimieto</label>
+							</div>
+							<div class="group-material">
+                                <input type="text" class="material-control tooltips-general" placeholder="Nombre o numero de administrador" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,20}" maxlength="20" required="required" data-toggle="tooltip" data-placement="top" title="Solamente 11 números">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+								<label>Número de administrador o nombre</label>
+							</div>
+							<div class="group-material">
+								<input type="text" class="material-control tooltips-general" placeholder="Contraseña" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{6,20}" maxlength="20" required="required" data-toggle="tooltip" data-placement="top" title="Solamente 20 caracteres">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Contraseña</label>
+							</div>
+							<div class="group-material">
+								<input type="text" class="material-control tooltips-general" placeholder="Campus" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{6,20}" maxlength="20" required="required" data-toggle="tooltip" data-placement="top" title="Solamente 20 caracteres">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Campus</label>
+							</div>
+							<div class="group-material">
+									<span>Genero</span>
+									<select class="material-control tooltips-general" data-toggle="tooltip" required="required" data-placement="top" title="Elige un genero">
+										<option value="" disabled="" selected="">Selecciona un genero</option>
+										<option value="seccion">Masculino</option>
+										<option value="seccion">Femenino</option>
+									</select>
+							</div>
+							<div class="group-material">
+								<span>Estado civil</span>
+								<select class="material-control tooltips-general" data-toggle="tooltip" required="required" data-placement="top" title="Elige una opción">
+									<option value="" disabled="" selected="">Selecciona una opción</option>
+									<option value="seccion">Casado</option>
+									<option value="seccion">Soltero</option>
+								</select>
+							</div>
+								
+							
                             <p class="text-center">
                                 <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                                 <button type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>

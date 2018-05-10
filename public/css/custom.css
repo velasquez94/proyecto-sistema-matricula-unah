@@ -1,11 +1,11 @@
 body {
-    font-family: 'Raleway';
+    font-family: 'Helvetica';
     font-size: 16px;
     font-weight: 300;
     color: #fff;
     line-height: 30px;
     text-align: center;
-    background-color: #80ced6;
+    background: url(../img/fondo1.PNG) top center;
 
 }
 
@@ -22,7 +22,7 @@ h1, h2 {
 
 /* Contenidos y Formulario*/
 .my-content {
-    padding: 100px 0 170px 0;
+    padding: 100px 0 80px 0;
 }
 .my-content .mydescription {
     margin: 20px 0 10px 0;
@@ -83,8 +83,14 @@ textarea.form-control {
     line-height: 50px;
     
 }
-input[type="text"]:focus, 
-input[type="password"]:focus, 
+input:focus:invalid, textarea:focus:invalid{
+    content: "Formato no válido o campo vacío";
+    background: #fff;
+    border: 2px solid #EF1713;
+}
+
+input:valid[type="text"]:focus, 
+input:valid[type="password"]:focus, 
 textarea:focus, 
 textarea.form-control:focus {
     background: #fff;
@@ -111,6 +117,8 @@ button.mybtn:focus {
     color: #fff; 
     background: #de615e; 
 }
+
+
 
 /*LOGIN REDES SOCIALES*/
 

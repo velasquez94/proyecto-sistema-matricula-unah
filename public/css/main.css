@@ -1,5 +1,4 @@
-/*========= Importando hojas de estilo =========*/
-/* Bootstrap 3.3.7 */
+
 @import url('./bootstrap.min.css');
 /* Material desing for Bootstrap */
 @import url('./bootstrap-material-design.min.css');
@@ -59,25 +58,6 @@ body, html{
 .text-titles{
 	font-family: 'RobotoCondensedLight'
 }
-/*============ LogIn
-.logInForm{
-	position: absolute;
-	color: #fff;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 90%;
-	max-width: 300px;
-	padding: 15px;
-	box-shadow: 0 0 3px rgba(0,0,0,.7);
-	border-radius: 0 0 2px 2px;
-	background-color: rgba(0, 0, 0, .7);
-}
-.logInForm p,
-.logInForm label{
-	color: #FFF;
-}
-============ Partes del dashboard*/
 .dashboard-sideBar,
 .dashboard-contentPage{
 	position: absolute;
@@ -93,8 +73,8 @@ body, html{
 .dashboard-sideBar{
 	left: 0;
 	z-index: 2;
-	background-image: url('../assets/img/unah5.jpg');
-	border-right: 1px solid rgba(0, 0, 255, .3);
+	background-image: url('../assets/img/puma1.jpg');
+	border-right: 0px solid rgba(0, 0, 255, .3);
 	overflow: hidden;
 }
 .dashboard-sideBar-ct{
@@ -108,9 +88,9 @@ body, html{
 .dashboard-sideBar-title > i{
 	height: 50px;
 	line-height: 50px;
-	color: #fff;
+	color: #E1F5F2;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 40px;
 }
 .dashboard-sideBar-title{
 	position: relative;
@@ -126,7 +106,7 @@ body, html{
 	border-top: 1px solid rgba(255, 255, 255, .3);
 	border-bottom: 1px solid rgba(255, 255, 255, .3);
 	color: #fff;
-	font-size: 14px;
+	font-size: 20px;
 	padding: 20px 0;
 }
 .dashboard-sideBar-UserInfo figure img{
@@ -146,12 +126,12 @@ body, html{
 }
 .dashboard-sideBar-UserInfo ul > li > a{
 	outline: none;
-	font-size: 20px;
+	font-size: 17px;
 	padding: 7px;
 	transition: all .3s ease-in-out;
 }
 .dashboard-sideBar-UserInfo ul > li > a:hover{
-	color: #14A0BC;
+	color: #3FE3D1;
 }
 .dashboard-sideBar-Menu{
 	padding-top: 15px;
@@ -161,9 +141,9 @@ body, html{
 .dashboard-sideBar-Menu > li > ul > li,
 .dashboard-sideBar-Menu > li > ul > li > a{
 	line-height: 50px;
-	font-family: "Helvetica";
+	font-family: "Poppins", sans-serif;
 	display: block;
-	color: #fff;
+	color:  #fff;
 	text-decoration: none;
 	border-radius: 4px;
 	transition: all .3s ease-in-out;
@@ -206,8 +186,8 @@ body, html{
 	outline: none;
 }
 .dashboard-sideBar-Menu > li > ul > li > a:hover{
-	border-left: 3px solid #0670BA;
-	color: #0670BA;
+	border-left: 3px solid #37E3E5;
+	color: #37E3E5;
 }
 /*contentPage*/
 .dashboard-contentPage{
@@ -256,6 +236,78 @@ body, html{
 	background-color: #FFF;
 	color: #333;
 }
+/*********==========Tablas con divs*/
+.div-table{
+    display: table !important;
+    width: 100%;
+    margin: 20px 0;
+    padding: 0;
+    background-color: #fff;
+    height: auto !important;
+}
+.div-table-row{
+    display: table-row !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    height: 40px;
+    line-height: 40px;
+}
+.div-table-row:hover{ background-color: #F5F5F5; }
+.div-table-row .div-table-cell:first-child{ border-left: 1px solid #E1E1E1; }
+.div-table-cell{
+    display: table-cell !important;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #E1E1E1;
+    border-right: 1px solid #E1E1E1;
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    text-align: center;
+}
+.div-table-head,
+.div-table-head:hover{
+    background-color: #DFF0D8;
+    font-size: 17px;
+    font-weight: bolder;
+}
+.div-table-head .div-table-cell{ border-top: 1px solid #E1E1E1 !important; }
+.div-table-row-list .div-table-cell{ border: none; }
+.div-table-row-list{ border: none; }
+.div-table-row-list .div-table-cell:first-child{ border-left: none; }
+
+/* ============= Estilos catalog ============= */
+.list-catalog{
+    font-size: 20px;
+    margin: 0 7px;
+    display: inline-block;
+    transition: .2s all ease-in-out;
+    padding: 2px 7px;
+    color: #6686A2;
+}
+.list-catalog:hover{
+    cursor: pointer;
+    color: rgb(0,0,150);
+    transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    background-color: #fff;
+}
+.list-catalog.active{
+    color: rgba(0,0,150,.9);
+    cursor: text;
+    border-bottom: 1px solid rgba(0,0,150,.4);
+    transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+}
+
 /*============ Area de notificaciones*/
 .Notifications-area{
 	height: 100%;
@@ -522,164 +574,8 @@ input.material-control:focus ~ .bar:before, input.material-control:focus ~ .bar:
 .tile-number > small{
 	font-size: 17px;
 }
-/*TimeLine*/
-.cd-container {
-  width: 90%;
-  max-width: 1170px;
-  margin: 0 auto;
-}
-.cd-container::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-#cd-timeline {
-  position: relative;
-  padding: 2em 0;
-  margin-top: 2em;
-  margin-bottom: 2em;
-}
-#cd-timeline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 18px;
-  height: 100%;
-  width: 4px;
-  background: #d7e4ed;
-}
-.cd-timeline-block {
-  position: relative;
-  margin: 2em 0;
-}
-.cd-timeline-block::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.cd-timeline-block:first-child {
-  margin-top: 0;
-}
-.cd-timeline-block:last-child {
-  margin-bottom: 0;
-}
-.cd-timeline-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(0,0,0,.09);
-}
-.cd-timeline-img img {
-  display: block;
-  width: 40px;
-  height: 40px;
-  position: relative;
-  border-radius: 50%;
-}
-.cd-timeline-content {
-  position: relative;
-  margin-left: 60px;
-  border-radius: 0.25em;
-  padding: 1em;
-  background-color: #01579B;
-  color: #fff;
-}
-.cd-timeline-content::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.cd-timeline-content .cd-date {
-  display: inline-block;
-}
-.cd-timeline-content p {
-  margin: 1em 0;
-  line-height: 1.6;
-}
-.cd-timeline-content .cd-date {
-  float: left;
-  padding: .8em 0;
-}
-.cd-timeline-content::before {
-  content: '';
-  position: absolute;
-  top: 16px;
-  right: 100%;
-  height: 0;
-  width: 0;
-  border: 7px solid transparent;
-  border-right: 7px solid #01579B;
-}
-@media (min-width: 1200px) {
-    #cd-timeline {
-        margin-top: 3em;
-        margin-bottom: 3em;
-    }
-    #cd-timeline::before {
-        left: 50%;
-        margin-left: -2px;
-    }
-    .cd-timeline-block {
-        margin: 4em 0;
-    }
-    .cd-timeline-block:first-child {
-        margin-top: 0;
-    }
-    .cd-timeline-block:last-child {
-        margin-bottom: 0;
-    }
-    .cd-timeline-img {
-        width: 60px;
-        height: 60px;
-        left: 50%;
-        margin-left: -30px;
-        -webkit-transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-    }
-    .cd-timeline-img img{
-        width: 60px;
-        height: 60px;
-    }
-    .cd-timeline-content .cd-date {
-        color: #01579B;
-    }
-    .cd-timeline-content {
-        margin-left: 0;
-        width: 45%;
-    }
-  .cd-timeline-content::before {
-    top: 24px;
-    left: 100%;
-    border-color: transparent;
-    border-left-color: #01579B;
-  }
-  .cd-timeline-content .cd-date {
-    position: absolute;
-    width: 100%;
-    left: 122%;
-    top: 6px;
-    font-size: 16px;
-    font-size: 1rem;
-  }
-  .cd-timeline-block:nth-child(even) .cd-timeline-content {
-    float: right;
-  }
-  .cd-timeline-block:nth-child(even) .cd-timeline-content::before {
-    top: 24px;
-    left: auto;
-    right: 100%;
-    border-color: transparent;
-    border-right-color: #01579B;
-  }
-  .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
-    left: auto;
-    right: 122%;
-    text-align: right;
-  }
-}
+
+
 
 /*======= MEDIA QUERIES*/
 @media (max-width: 767px){
@@ -700,12 +596,12 @@ input.material-control:focus ~ .bar:before, input.material-control:focus ~ .bar:
 		left: 0;
 	}
 	.dashboard-sideBar-ct{
-		background-color: #000;
+		background-color: #41BFD6;
 		border-right: 1px solid rgba(255, 255, 255, .3);
 		z-index: 3;
 		max-width: 270px;
 		width: 100%;
-		transition: all .3s ease-in-out;
+		transition: all .1s ease-in-out;
 		transform: translateX(-270px);
 	}
 	.dashboard-sideBar-bg{

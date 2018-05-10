@@ -8,7 +8,7 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="img/unah3-1.png" rel="icon">
+  <link href="img/unah10.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -44,9 +44,10 @@
         <ul class="nav-menu">
           <li class="menu-active"><a href="#hero">Inicio</a></li>
           <li><a href="#about">Avisos</a></li>
-          <li><a href="#services">Services</a></li>
+          <li><a href="#services">Servicios</a></li>
           <li><a href="#portfolio">Calendarios</a></li>
-          <!--<li><a href="#team">Team</a></li>-->
+          <li><a data-toggle="modal" data-target="#exampleModal">Registrate</a></li>
+         
           <li class="menu-has-children"><a href="#">Iniciar Sesión</a>
             <ul>
               <li><a href="login/loginestudiantes.html">Estudiante</a></li>
@@ -288,8 +289,6 @@
 
       </div>
     </section><!-- #call-to-action -->
-
-   
     
 
     <!--==========================
@@ -298,12 +297,12 @@
     <section id="contact">
       <div class="container wow fadeInUp">
         <div class="section-header">
-          <h3 class="section-title">Contacto</h3>
+          <h3 class="section-title">Contacto y Ubicación</h3>
           <p class="section-description">Contacatar con administración de UNAH</p>
         </div>
       </div>
 
-      <div id="google-map" data-latitude="40.713732" data-longitude="-74.0092704"></div>
+      <div id="google-map" data-latitude="14.0850" data-longitude="-87.1660"></div>
 
       <div class="container wow fadeInUp">
         <div class="row justify-content-center">
@@ -313,7 +312,7 @@
             <div class="info">
               <div>
                 <i class="fa fa-map-marker"></i>
-                <p>Bulevar Suyapa, Tegucigalpa, M.D.C. <br>Honduras, Centroamérica</p>
+                <p>Blvd. Suyapa Ciudad Universitaria, Tegucigalpa M.D.C. <br>Honduras, Centroamérica</p>
               </div>
 
               <div>
@@ -328,14 +327,13 @@
             </div>
 
             <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              <a href="https://twitter.com/UNAH_Oficial" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="https://es-la.facebook.com/unah.edu.hn/" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="https://www.instagram.com/unahoficial/?hl=es-la" class="instagram"><i class="fa fa-instagram"></i></a>
             </div>
 
           </div>
+          <!--
 
           <div class="col-lg-5 col-md-8">
             <div class="form">
@@ -362,6 +360,7 @@
               </form>
             </div>
           </div>
+        -->
 
         </div>
 
@@ -391,13 +390,76 @@
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
+  <!-- Vetaa mdadal modal -->
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Formulario de registro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="myform-bottom">
+              <form role="form" action="" method="post" class="">
+                <div class="form-group">
+                    <input type="text" name="txt-nombre" placeholder="Nombres..."  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,30}" maxlength="30"  required="required" class="form-control" id="form-firtsname" title="solamente letras">
+                    <!--<div class="valid-feedback">Esta bien</div>
+                    <div class="invalid-feedback">Ingrese el nombre</div>-->
+                </div>
+                <div class="form-group">
+                    <input type="text" name="form-lastname" placeholder="Apellidos..." class="form-control" id="form-lastname" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{5,30}" maxlength="30"  required="required" data-toggle="tooltip" data-placement="top" title="solamente letras">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="txt-identidad" placeholder="Número de Identidad (ejm:0801199007462)" pattern="^[1|0]\d{12,12}$" required="required" maxlength="13" class="form-control" id="form-identidad" title="solamente números">
+                </div>    
+                 <div class="form-group">
+                    <input type="text" name="txt-telefono" placeholder="Número de teléfono" pattern="^[9|8|2]\d{7,7}$" required="required" maxlength="8" class="form-control" id="form-telefono" title="solamente números">
+                </div>
+                <div class="form-group">
+                  <textarea type="text-area" name="form-direccion" placeholder="Dirección..." pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{8,60}" maxlength="60" required="required" class="form-control" id="form-direccion" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="form-email" placeholder="Correo electrónico..." class="form-control" id="form-email"  data-rule="email" required="required" data-msg="Ingresar correo electronico valido" title="correo electronico incorrecto">
+                  </div>
+                <div class="form-group">
+                 <label class="form-group" >Fecha de nacimiento</label>
+                  <input class="form-control" required="required" type="date">
+                </div>
+               <div>
+                  <label class="form-group">Genero</label>
+                </div>
+                <div class="form-group col-sm-6 col-xl-6 " >
+                  <input type="radio" name="rbt-genero" id="rbt-femenino" required="required"><label for="rbt-femenino">Femenino</label>
+                </div>
+                <div class="form-group col-sm-6 col-xl-6">
+                  <input type="radio" name="rbt-genero" id="rbt-masculino" ><label for="rbt-masculino">Masculino</label>
+                </div>
+                <div>
+                  <label class="form-group">Estado civil</label>
+                </div>
+                <div class="form-group col-sm-6 col-xl-6 ">
+                  <input type="radio" name="rbt-estado" id="rbt-soltero"required="required"><label for="rbt-soltero">Soltero</label>
+                </div>
+                <div class="form-group col-sm-6 col-xl-6">
+                  <input type="radio" name="rbt-estado" id="rbt-casado"><label for="rbt-casado">Casado</label>
+                </div>
+          <div class="modal-footer">
+            <button type="button" class="mybtn" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="mybtn" onclick="validar();">Registrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/jquery/jquery-migrate.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="lib/easing/easing.min.js"></script>
   <script src="lib/wow/wow.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3J_fdF2C2RpQm3796zlNBgvhfqpJMrQ8"></script>
 
   <script src="lib/waypoints/waypoints.min.js"></script>
   <script src="lib/counterup/counterup.min.js"></script>
