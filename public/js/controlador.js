@@ -133,3 +133,67 @@ $.ajax({
    
     }
 });
+
+function cargarEstudiantes() {
+    var codigo = getCookie("cuenta");
+    var tipo = getCookie("tipo_usuario");
+    var parametros = "codigo_estudiante=" + codigo;
+    var estudiante = null;
+    if (tipo == 3) {
+        var promise = $.ajax({
+            url: "obtenerEstudiantes",
+            method: "POST",
+            data: parametros,
+            dataType: "json",
+            success: function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.length == 1) {
+                    empresa = "cuenta=" + respuesta[0].codigo_estudiante;
+                }
+            },
+            error: function (e) {
+                alert("Ocurrio un error.");
+                console.log(JSON.stringify(e));
+            }
+        });
+    }
+    
+            $.ajax({
+                url: "obtenerEstudiantes",
+                method: "POST",
+                data: empresa,
+                dataType: "json",
+                success: function (respuesta) {
+
+                    console.log(respuesta);
+                    if (respuesta.length > 0) {
+                        for (let i = 0; i < respuesta.length; i++) {
+                            $('#div-table-student').append('<div class="div-table-row div-table-row-list"> '+
+                            '<div class="div-table-cell" style="width: 6%;">'+ respuesta[i].numero_cuenta +'</div>'+
+                            '<div class="div-table-cell" style="width: 9%;">'+ respuesta[i].identidad +'</div>'+
+                            '<div class="div-table-cell" style="width: 12%;">'+ respuesta[i].nombre +'</div>'+
+                            '<div class="div-table-cell" style="width: 12%;">'+ respuesta[i].apellido+'</div>'+
+                            '<div class="div-table-cell" style="width: 9%;">'+ respuesta[i].correo_electronico +'</div>'+
+                            '<div class="div-table-cell" style="width: 9%;">'+ respuesta[i].telefono +'</div>'+
+                            '<div class="div-table-cell" style="width: 11%;">'+ respuesta[i].fecha_nacimiento +'</div>'+
+                            '<div class="div-table-cell" style="width: 9%;">'+ respuesta[i].campus +'</div>'+
+                            '<div class="div-table-cell" style="width: 9%;">'+ respuesta[i].seccion +'</div>'+
+                            '<div class="div-table-cell" style="width: 6%;">'+
+                            '<button class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></button>'+
+                            '</div>'+
+                            '<div class="div-table-cell" style="width: 6%;">'+
+                            '<button class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></button> '+
+                            '</div> '+
+                        '</div> ');
+                        }
+                    }
+                
+                },
+                error: function (e) {
+                    alert("Ocurrio un error.");
+                    console.log(JSON.stringify(e));
+                }
+            });
+        });
+     
+

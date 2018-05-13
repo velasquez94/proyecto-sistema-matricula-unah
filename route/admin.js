@@ -49,29 +49,6 @@ router.post("/registrarAlumno", urlEncodeParser, function(request, response) {
 	});
   });
 
-router.post("/", urlEncodeParser, function(request, response) {
-var tipoEmpleado = request.body.selectOfertaLaboral;
-var codTipoAspirante;
-if(tipoAspirante == 'Agente carry permanente'){codTipoAspirante=1;}
-if(tipoAspirante == 'Agente carry recurrente'){codTipoAspirante=2;}
-console.log(request.body.txtNames);
-var sql = 'INSERT INTO tblaspirantes(codAspirante, nombre, apellido, identificacion, nacimiento, '+
-'telefono, correo, domicilio, codTipoAspirante_fk) VALUES (NULL,?,?,?,STR_TO_DATE(?, "%Y-%m-%d"),?,?,?,?)';
-var values = [
-  request.body.txtNames,
-  request.body.txtLastname,
-  request.body.txtId,
-  request.body.fechaPicker,
-  request.body.txtPhone,
-  request.body.txtMail,
-  request.body.txtDomicilio,
-  codTipoAspirante
-];
-realizarQuery(sql,values, function(res){
-  response.send(res);
-});
-
-});
 
 router.post('/actualizarInfo', urlEncodeParser, function(peticion,respuesta){
 	var hash = sha512(peticion.body.contrasena);
@@ -85,7 +62,7 @@ router.post('/actualizarInfo', urlEncodeParser, function(peticion,respuesta){
 				  peticion.body.email,
 				  contrasena,
 				  peticion.body.codigo];
-    //console.log(values);
+
     realizarQuery(sql, values, function(data){
          respuesta.send(data);
      });
@@ -94,7 +71,7 @@ router.post('/actualizarInfo', urlEncodeParser, function(peticion,respuesta){
 
 router.post('/obtenerEstudiantes', urlEncodeParser, function(peticion,respuesta){
 	
-	//console.log("consiguiendo datos");
+
 	var sql = 'SELECT b.numero_cuenta a.identidad, a.nombre, a.apellido, a.correo_electronico, a.telefono, fecha_nacimiento, a.campus, '+
 			   'FROM  tbl_personas as a '+
 			   'INNER JOIN tbl_alumnos as b '+
@@ -102,9 +79,9 @@ router.post('/obtenerEstudiantes', urlEncodeParser, function(peticion,respuesta)
 			   'WHERE codigo_persona= ? ';
     var values = [peticion.body.codigo];
     
-    //console.log(values);
+    
     realizarQuery(sql, values, function(data){
-    	//console.log(respuesta);
+    
          respuesta.send(data);
      });
 
@@ -132,51 +109,6 @@ router.post('/obtenerDocentes', urlEncodeParser, function(peticion,respuesta){
 
 });
 
-/*
-
-router.post('/obtenerSecciones', urlEncodeParser, function(peticion,respuesta){
-	
-	//console.log("consiguiendo datos");
-	var sql = 'SELECT A.colItem, B.nombreArticulo, B.precio, B.origenFabricacion, B.descripcion '+
-				'FROM tbllistadeseos AS A '+
-				'INNER JOIN tblarticulos AS B '+
-				'ON(A.codArticulo=B.codArticulo) '+
-				'WHERE A.codUsuario=?';
-    var values = [peticion.body.codigo];
-    //console.log(values);
-    
-    //console.log(values);
-    realizarQuery(sql, values, function(data){
-    	//console.log(respuesta);
-    	//console.log(data);
-         respuesta.send(data);
-     });
-
-});
-
-router.post('/obtenerEmpresaFavorita', urlEncodeParser, function(peticion,respuesta){
-	
-	//console.log("consiguiendo datos");
-	var sql = 'SELECT A.codItem, B.nombreEmpresa, C.rubro,B.ubicacion, B.calificacion '+
-				'FROM  tblempresafavoritas AS A '+
-				'INNER JOIN tblempresas AS B '+
-				'ON(A.codEmpresa=B.codEmpresa) '+
-				'INNER JOIN tblrubro AS C '+
-				'ON(B.codRubro=C.codRubro) '+
-				'WHERE A.codUsuario=? ';
-    var values = [peticion.body.codigo];
-    //console.log(values);
-    
-    //console.log(values);
-    realizarQuery(sql, values, function(data){
-    	//console.log(respuesta);
-    	//console.log(data);
-         respuesta.send(data);
-     });
-
-});
-
-*/
 
 
 

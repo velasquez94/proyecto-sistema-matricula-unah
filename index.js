@@ -62,7 +62,8 @@ function verificarAutenticacion(peticion, respuesta, next){
 }
 app.post("/login-admin", function(peticion, respuesta){
     var conexion = mysql.createConnection(credenciales);
-    conexion.query("SELECT codigo_admin, usuario, contrasenia, codigo_tipo_usuario FROM tbl_admin  WHERE usuario=? and contrasenia=sha1(?)",
+    conexion.query('SELECT codigo_admin, usuario, contrasenia, '+
+    'codigo_tipo_usuario FROM tbl_admin  WHERE usuario=? and contrasenia=sha1(?)',
         [peticion.body.usuario, peticion.body.contrasenia],
         function(err, data, fields){
             if(err) throw err;
@@ -81,7 +82,8 @@ app.post("/login-admin", function(peticion, respuesta){
 
 app.post("/login-empleado", function(peticion, respuesta){
     var conexion = mysql.createConnection(credenciales);
-    conexion.query("SELECT codigo_empleado, numero_empleado, codigo_tipo_usuario,  contrasenia, FROM tbl_empleados  WHERE numero_empleado=? and contrasenia=sha1(?)",
+    conexion.query('SELECT codigo_empleado, numero_empleado, codigo_tipo_usuario, '+  
+    'contrasenia, FROM tbl_empleados  WHERE numero_empleado=? and contrasenia=sha1(?)',
         [peticion.body.numero, peticion.body.contrasena],
         function(err, data, fields){
                 if (data.length>0){
@@ -98,7 +100,9 @@ app.post("/login-empleado", function(peticion, respuesta){
 });
 app.post("/login-alumno", function(peticion, respuesta){
     var conexion = mysql.createConnection(credenciales);
-    conexion.query("SELECT codigo_estudiante, numero_cuenta, codigo_tipo_usuario,  contrasenia, FROM tbl_alumnos  WHERE numero_cuenta=? and contrasenia=sha1(?)",
+    conexion.query('SELECT codigo_estudiante, numero_cuenta, '+
+    'codigo_tipo_usuario,  contrasenia, '+
+    'FROM tbl_alumnos  WHERE numero_cuenta=? and contrasenia=sha1(?)',
         [peticion.body.cuenta, peticion.body.contrasenia],
         function(err, data, fields){
                 if (data.length>0){
@@ -121,22 +125,6 @@ app.get("/obtener-sesion", function(peticion, respuesta){
 });
 /*
 
-app.post("/login", urlEncodeParser, function(peticion, respuesta){
-
-    if(peticion.body.codigo && peticion.body.tipo){
-        peticion.session.codigo = peticion.body.codigo;
-        peticion.session.tipo = peticion.body.tipo;
-        respuesta.cookie("codigo",peticion.body.codigo);
-        respuesta.cookie("tipo_acceso",peticion.body.tipo);
-        respuesta.send({status:1,mensaje:"Accedio correctamente"});
-    }else{
-        peticion.session.destroy();
-        respuesta.send({status:0,mensaje:"Login fallido"});
-    }
-    
-
-});
-
 
 router.get("/logout", function(peticion, respuesta){
     respuesta.clearCookie("codigo");
@@ -150,23 +138,72 @@ app.get("/ruta-restringida",verificarAutenticacion,  function(peticion, respuest
     respuesta.send("Bienvenido a la ruta restringida");
 });
 
-/*
-router.get("/rutaSeguraUser",verificarAutenticacion,function(peticion, respuesta, next){
-    verificarUser(peticion,respuesta,next);
-	respuesta.send({status:1,mensaje:"Bienvenido a la ruta restringida"});
+
+app.post('/obtenerEstudiantes', function(peticion,respuesta){
+	
+	//console.log("consiguiendo datos");
+	var sql = 'SELECT b.numero_cuenta a.identidad, a.nombre, a.apellido, a.correo_electronico, a.telefono, fecha_nacimiento, a.campus, '+
+			   'FROM  tbl_personas as a '+
+			   'INNER JOIN tbl_alumnos as b '+
+			   'ON (a.codigo_persona = b.codigo_persona) '+
+			   'WHERE codigo_persona= ? ';
+    var values = [peticion.body.codigo];
+    
+    //console.log(values);
+    realizarQuery(sql, values, function(data){
+    	//console.log(respuesta);
+         respuesta.send(data);
+     });
+
 });
 
-router.get("/rutaSeguraStudent",verificarAutenticacion,function(peticion, respuesta, next){
-    verificarUser(peticion,respuesta,next);
-	respuesta.send({status:1,mensaje:"Bienvenido a la ruta restringida"});
+app.post('/obtenerDocentes', function(peticion,respuesta){
+	
+	//console.log("consiguiendo datos");
+	var sql = 'SELECT b.numero_empleado a.identidad, a.nombre, a.apellido, a.correo_electronico, a.telefono, fecha_nacimiento, a.campus, c.cogigo_titularidad, '+
+			   'FROM  tbl_personas as a '+
+			   'INNER JOIN tbl_empleados as b '+
+			   'ON (a.codigo_persona = b.codigo_persona) '+
+			   'INNER JOIN tbl_maestros as c '+
+			   'ON (b.codigo_empleado = c.codigo_empleado) '+
+			   'WHERE codigo_empleado= ? '
+			   'WHERE codigo_persona= ? ';
+	var values = [peticion.body.codigoEmp,
+		peticion.body.codigoPer];
+    
+    //console.log(values);
+    realizarQuery(sql, values, function(data){
+    	//console.log(respuesta);
+         respuesta.send(data);
+     });
+
 });
 
-router.get("/rutaSeguraTeacher",verificarAutenticacion,function(peticion, respuesta, next){
-    verificarUser(peticion,respuesta,next);
-	respuesta.send({status:1,mensaje:"Bienvenido a la ruta restringida"});
-});
-*/
-app.get("/datos-alumnos",function(req,res){
+app.post("/registrarAlumno", function(peticion,respuesta){
+
+	var hash = sha512(peticion.body.txtPassword);
+	var contrasena = hash.toString('hex');
+	var codTipoUsuario = 1;
+	var sql = 'INSERT INTO tbl_personas(nombre, apellido, identidad, correo_electronico, telefono, direccion, '+
+	'fecha, cuenta, contrasenia, campus, codigo_genero, codigo_estado_civil, codigo_tipo_usuario) VALUES(?,?,?,?,?,?,sysdate(),?,?,?,?)';
+	var values = [request.body.nombre,
+	  peticion.body.apellido,
+	  peticion.body.identidad,
+	  peticion.body.correo,
+	  peticion.body.direccion,
+	  peticion.body.cuenta,
+	  contrasena,
+	  peticion.body.campus,
+	  codGenero,
+	  codEstadoCivil,
+	  codTipoUsuario
+	];
+	realizarQuery(sql,values, function(res){
+	  respuesta.send(res);
+	});
+  });
+  
+app.get("/datos-alumnos",function(peticion,respuesta){
     var conexion=mysql.createConnection(servidor);
     conexion.query(
         'SELECT b.nombre,b.apellido,a.numero_cuenta,a.promedio,c.nombre_carrera,e.nombre_campus,YEAR(sysdate()) as año '+
@@ -179,14 +216,14 @@ app.get("/datos-alumnos",function(req,res){
         function(errorSelect,informacion){
             if (errorSelect) throw errorSelect;
             conexion.end();
-            res.send(informacion);
+            respuesta.send(informacion);
         }
     );
 });
 
 
 
-app.get("/historial-academico",function(req,res){
+app.get("/historial-academico",function(peticion,respuesta){
     var conexion=mysql.createConnection(servidor);
     conexion.query(
         'SELECT a.codigo_alterno,a.nombre_asignatura,a.cantidad_unidades_valorativas, b.codigo_alterno as seccion,YEAR(p.fecha_inicio), c.nombre_periodo, f.valor_nota,'+
@@ -201,12 +238,12 @@ app.get("/historial-academico",function(req,res){
         function(error,data){
             if(error) throw error;
 			conexion.end();
-			res.send(data);
+			respuesta.send(data);
         }
     );
 });
 
-app.get("/requisito-asignaturas",function(req,res){
+app.get("/requisito-asignaturas",function(peticion,respuesta){
     var conexion=mysql.createConnection(servidor);
     var conexion2=mysql.createConnection(servidor);
     var asignaturas=[];
@@ -216,7 +253,7 @@ app.get("/requisito-asignaturas",function(req,res){
             'INNER JOIN tbl_carreras b ON b.codigo_carrera=d.codigo_carrera '+
             'INNER JOIN tbl_tipo_asignatura c ON c.codigo_tipo_asignatura=a.codigo_tipo_asignatura '+
             "WHERE d.codigo_carrera=?";
-    conexion.query(sql,[1]).on('result',function(asignatura){
+    conexion.query(sql,[1]).on('result',function(peticion,respuesta){
     asignatura.requisitos=[];
     asignaturas.push(asignatura);
     conexion.pause();
@@ -234,11 +271,11 @@ app.get("/requisito-asignaturas",function(req,res){
             .on('end',function(){
                 conexion.end();
                 conexion2.end();
-                res.send(asignaturas);
+                respuesta.send(asignaturas);
             });
 });
 
-app.post("/secciones",function(req,res){
+app.post("/secciones",function(peticion,respuesta){
     var conexion=mysql.createConnection(servidor);
     conexion.query(
         'SELECT a.codigo_alterno, a.codigo_seccion, a.dias, a.cantidad_cupos, b.codigo_asignatura, b.nombre_asignatura,c.fecha_inicio, c.fecha_fin '+
@@ -247,15 +284,15 @@ app.post("/secciones",function(req,res){
         'INNER JOIN tbl_periodos c ON c.codigo_periodo=a.codigo_periodo '+
         'WHERE (sysdate() BETWEEN c.fecha_inicio AND c.fecha_fin) '+
         'AND b.codigo_asignatura=?',
-        [req.body.codigo],
+        [peticion.body.codigo],
         function(error,data){
             if(error) throw error;
 			conexion.end();
-			res.send(data);
+			respuesta.send(data);
         });
 });
 
-app.post("/adicionar-asignatura",function(req,res){
+app.post("/adicionar-asignatura",function(peticion,respuesta){
     var conexion=mysql.createConnection(servidor);
     var estado=0;
     conexion.query(
@@ -263,7 +300,7 @@ app.post("/adicionar-asignatura",function(req,res){
         'FROM tbl_seccion a '+
         'INNER JOIN tbl_asignaturas b ON b.codigo_asignatura=b.codigo_asignatura '+
         "WHERE b.codigo_seccion=?",
-        [req.body.codigo],function(error,data){
+        [peticion.body.codigo],function(error,data){
             if(data[0].cantidad_cupos>0){
                 estado=1;
             }else{
@@ -272,13 +309,13 @@ app.post("/adicionar-asignatura",function(req,res){
     conexion.query(
     'INSERT INTO tbl_matricula(fecha_matricula, codigo_alumno, codigo_estado_matricula, codigo_seccion, codigo_matricula) '+
     'VALUES (sysdate(),?,?,?,NULL)',
-        [2,estado,req.body.codigo,],
+        [2,estado,peticion.body.codigo,],
         function(errorInsert,info){
             if(info.affectedRows==1){conexion.query(
     'UPDATE tbl_seccion '+
     'SET cantidad_cupos = cantidad_cupos-1 '+
     'WHERE tbl_seccion.codigo_seccion = ?',
-    [req.body.codigo], function(errorUpdate,datos){
+    [peticion.body.codigo], function(errorUpdate,datos){
     conexion.query(
     'SELECT c.codigo_matricula, c.codigo_estado_matricula, c.codigo_alumno, a.codigo_seccion, a.codigo_alterno, a.hora_inicio, a.hora_fin,'+
     'a.dias, b.nombre_asignatura, b.codigo_alterno, b.cantidad_unidades_valorativas, b.codigo_asignatura, c.nombre_periodo, d.nombre_aula, e.nombre_edificio '+
@@ -293,7 +330,7 @@ app.post("/adicionar-asignatura",function(req,res){
     function(errorSelect,informacion){
     if (errorSelect) throw errorSelect;
     conexion.end();
-    res.send(informacion);
+    respuesta.send(informacion);
     });
  });
 }
@@ -302,19 +339,19 @@ app.post("/adicionar-asignatura",function(req,res){
     
 });
 
-app.post("/cancelar-clase",function(req,res){
+app.post("/cancelar-clase",function(peticion,respuesta){
     var conexion=mysql.createConnection(servidor);
     conexion.query(
     'DELETE FROM tbl_matricula '+
     'WHERE tbl_matricula.codigo_matricula = ?',
-    [req.body.codigo],
+    [peticion.body.codigo],
     function(error,data){
     if(data.affectedRows==1){
     conexion.query(
     'UPDATE tbl_seccion '+
     'SET cantidad_cupos = cantidad_cupos+1 '+
     'WHERE tbl_seccion.codigo_seccion = ?',
-    [req.body.seccion],
+    [peticion.body.seccion],
     function(errorUpdate,datos){
     conexion.query(
     'SELECT a.codigo_matricula, a.codigo_estado_matricula, a.codigo_alumno, b.codigo_alterno, b.hora_inicio, b.hora_fin,'+
@@ -329,7 +366,7 @@ app.post("/cancelar-clase",function(req,res){
     function(errorSelect,informacion){
     if (errorSelect) throw errorSelect;
     conexion.end();
-    res.send(informacion);
+    respuesta.send(informacion);
     });
 });
 }
