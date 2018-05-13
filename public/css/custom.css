@@ -70,7 +70,8 @@ h1, h2 {
 .myform-bottom .mybtn {
     width: 40%;
 }
-input[type="text"], 
+input[type="text"],
+input[type="email"],
 input[type="password"], 
 textarea, 
 textarea.form-control {
@@ -88,9 +89,9 @@ input:focus:invalid, textarea:focus:invalid{
     background: #fff;
     border: 2px solid #EF1713;
 }
-
 input:valid[type="text"]:focus, 
-input:valid[type="password"]:focus, 
+input:valid[type="email"]:focus,
+input:valid[type="password"]:focus,
 textarea:focus, 
 textarea.form-control:focus {
     background: #fff;

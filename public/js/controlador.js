@@ -1,3 +1,4 @@
+/*
 function validar(){
 	validarCampoVacio("form-firtsname");
 	validarCampoVacio("form-lastname");
@@ -38,3 +39,97 @@ function validarCorreo(etiquetaEmail) {
     	etiquetaEmail.classList.add("is-invalid");
     }
 }
+
+
+$("#btn-acceder").click(function(){
+    $.ajax({
+        url:"/login",
+        data:"correo_electronico="+$("#email").val()+"&contrasenia="+$("#txtPass").val(),
+        method:"POST",
+        dataType:"json",
+        success:function(respuesta){
+            if (respuesta.estatus ==0 )
+                window.location.href ="home.html";
+            else
+                alert("Credenciales incorrectas");
+            console.log(respuesta);
+        }
+    });
+});
+$("#acceder_docente").click(function(){
+	if ($('#codigo').val()!= "" && $('#password').val() != "") {
+		login();
+	}else
+		alert("Ingrese nombre de usuario y contraseña");
+		});
+function login(){
+var parametros ="numero="+$('#codigo').val()
+	+"&contrasena="+$('#password').val(); 
+    $.ajax({
+        url:"/login_empleado",
+        data:parametros,
+        method:"POST",
+        dataType:"json",
+        success:function(respuesta){
+            if (respuesta.estatus ==0 )
+                window.location.href ="home.html";
+            else
+                alert("Credenciales incorrectas");
+            console.log(respuesta);
+        }
+    });
+
+}
+
+
+$("#btn-acceder").click(function(){
+	if ($('#usuario').val()!= "" && $('#txtPass').val() != "") {
+		login();
+	}else
+		alert("Ingrese nombre de usuario y contraseña");
+		});
+function login(){
+var parametros ="usuario="+$('#usuario').val()
+	+"&contrasenia="+$('#txtPass').val(); 
+    $.ajax({
+        url:"/login_admin",
+        data:parametros,
+        method:"POST",
+        dataType:"json",
+        success:function(respuesta){
+            if (respuesta.estatus ==0 )
+                window.location.href ="home.html";
+            else
+                alert("Credenciales incorrectas");
+            console.log(respuesta);
+        }
+    });
+
+}
+*/
+
+$("#btn-acceder").click(function(){
+    $.ajax({
+        url:"/login-admin",
+        data:"usuario="+$("#usuario").val()+"&contrasenia="+$("#txtPass").val(),
+        method:"POST",
+        dataType:"json",
+        success:function(respuesta){
+            if (respuesta.estatus ==0 )
+                window.location.href ="home.html";
+            else
+                alert("Credenciales incorrectas");
+            console.log(respuesta);
+        }
+    });
+});
+
+$.ajax({
+    url:"/datos-alumno",
+    data:"cuenta="+$("#cuenta").val()+"&contrasenia="+$("#Pass").val(),
+    method:"POST",
+    dataType:"json",
+    success:function(respuesta){
+   
+    }
+});

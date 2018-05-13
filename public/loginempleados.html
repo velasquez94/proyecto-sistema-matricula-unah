@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario Login</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"> <!--Iconos--> 
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <link href="img/unah10.png" rel="icon">
+  </head>
+
+  <body>
+    <!--<form action="../empleado/homeEmpleadp.html" method="" autocomplete="off" class="full-box logInForm">-->
+    <div class="my-content" >
+        <div class="container" > 
+
+            <div class="row">
+              <div class="col-sm-12" >
+                  <h1><strong></strong>Login Empleados</h1>
+              </div>
+            </div>
+            <div class="row">
+                  <div class="col-sm-6 col-sm-offset-3 myform-cont" >
+                      <div class="myform-top">
+                          <div class="col-sm-6 myform-top-left">
+                              <p>Ingresa tu número de empleado y contraseña:</p>
+                          </div>
+                          <div class="myform-top-right">
+                           <i class="fas fa-users"></i>
+                          </div>
+                      </div>
+                      <div class="myform-bottom">
+                        <form role="form" action="../public-empleados/home.html" method="POST" class="full-box logInForm">
+                          <div class="form-group">
+                              <input type="text" name="form-numeroempleado" placeholder="Número de empleado" pattern="^[2]\d{2,2}$" required="required" maxlength="3" class="form-control" id="form-numeroempleado">
+                          </div>
+                          <div class="form-group">
+                              <input type="password" name="form-password" placeholder="Contraseña" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]+"  required="required" minlength="5" maxlength="15" class="form-control"  id="form-password">
+                          </div>
+                          <button type="submit" class="mybtn">Ingresar</button>
+                        </form>
+                      </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+<!--</form>-->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+
+</html>

@@ -164,7 +164,7 @@ $(document).ready(function(){
 		  	confirmButtonText: 'Si, Salir',
 		  	cancelButtonText: 'Cacelar'
 		}).then(function () {
-			window.location.href="index.html";
+			window.location.href="../public/index.html";
 		});
 	});
 	$('.btn-menu-dashboard').on('click', function(){
